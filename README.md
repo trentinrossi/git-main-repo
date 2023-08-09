@@ -20,6 +20,7 @@ The first approach is to use submodules. This is the most common way to handle c
 - git submodule init
 
 ```bash
+# add new child repo
 git submodule add https://github.com/trentinrossi/git-child-repo-a.git submodules/git-child-repo-a
 ```
 
@@ -28,3 +29,27 @@ git submodule init
 ```
 
 ## Subtree
+The second approach is to use subtree. This is a new way to handle child repos. The main repo will contain the child repo code. The main repo will contain a folder called submodules that will contain the child repo code. The main repo will contain a file called .git/config that will contain the configuration of the child repo.
+
+### Pros
+- The main repo will contain the child repo code.
+- It is easy to use.
+
+### Cons
+- The main repo will contain the child repo code.
+
+### Commands
+- git subtree add --prefix=<child-repo-folder> <child-repo-url> <child-repo-branch> --squash
+
+```bash
+# add new child repo
+git subtree add --prefix=example-c https://github.com/trentinrossi/git-child-repo-c.git main
+From https://github.com/trentinrossi/git-child-repo-c --squash
+```
+
+```bash
+# pull changes from child repo
+git subtree pull --prefix=example-c https://github.com/trentinrossi/git-child-repo-c.git main
+From https://github.com/trentinrossi/git-child-repo-c
+```
+
